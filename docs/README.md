@@ -1,20 +1,20 @@
-# Bookly — entrega documental
+# Bookly — documentation
 
-Esta carpeta reúne los materiales preparados para presentar el proyecto Bookly a Decagon y validar el alcance del take-home.
+This folder contains the supporting materials for the Bookly project and the take-home requirements.
 
 ## Entregables
 
-- [Deck de solución para Decagon](../output/Bookly-Decagon-solution-deck.pptx)
-- [Escenarios de prueba trilingües — PDF](../output/pdf/Bookly-test-scenarios-trilingual.pdf)
-- [Diagrama de flujo — SVG](./bookly-agent-flow.svg)
-- [Diagrama de flujo — Mermaid](./bookly-agent-flow.md)
-- [Checklist de requerimientos y estado](./DELIVERY-CHECKLIST.md)
+- [Solution deck](../output/Bookly-solution-deck.pptx)
+- [Trilingual test scenarios — PDF](../output/pdf/Bookly-test-scenarios-trilingual.pdf)
+- [Flow diagram — SVG](./bookly-agent-flow.svg)
+- [Flow diagram — Mermaid](./bookly-agent-flow.md)
+- [Requirements checklist](./DELIVERY-CHECKLIST.md)
 
-## Cómo usar estos materiales
+## How to use these materials
 
-1. Abrir el deck para la presentación de 5 diapositivas.
-2. Ejecutar los escenarios del PDF en `/` y `/landing`.
-3. Usar el diagrama para explicar la relación entre interfaz, orquestador, herramientas, memoria y respuesta.
-4. Revisar el checklist antes de publicar el repositorio.
+1. Open the five-slide deck.
+2. Run the PDF scenarios against `/` and `/landing`.
+3. Use the diagram to explain the relationship between the interface, orchestrator, tools, memory, and response.
+4. Review the checklist before publishing changes.
 
-El código de la aplicación no fue modificado como parte de esta entrega documental.
+The application code is documented here alongside the supporting artifacts.

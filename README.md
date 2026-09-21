@@ -1,107 +1,111 @@
 # Bookly Support Agent
 
-Prototipo para el SE Take-Home: un agente de soporte y compras conversacionales para una librería online ficticia. La aplicación funciona como chat web en `/` y como widget dentro de una landing en `/landing`.
+Bookly is a conversational support and shopping prototype for an online bookstore. It runs as a full support chat at `/` and as a customer-facing chat widget inside a landing page at `/landing`.
 
-## Qué incluye
+## Features
 
-- Chat web responsive con estética de tienda de libros.
-- Flujo multi-turn para consultar el estado de un pedido.
-- Flujo multi-turn para abrir una devolución y generar un caso mock.
-- Pregunta de aclaración cuando la intención o el dato clave faltan.
-- Herramientas `search_books`, `get_order_status`, `create_return` y checkout conversacional.
-- Integración opcional con Supabase para catálogo, pedidos, devoluciones, usuarios, carritos, checkout e histórico.
-- Panel `Agent trace` que muestra intención, memoria, decisión y respuesta.
-- Adaptador opcional a OpenAI Responses API. Sin `OPENAI_API_KEY`, el demo funciona con respuestas deterministas para que la demo sea reproducible.
+- Responsive book-store chat UI.
+- Multi-turn order status and return flows.
+- Clarifying questions when intent or required data is missing.
+- `search_books`, `get_order_status`, `create_return`, and conversational checkout actions.
+- Optional Supabase integration for the catalog, orders, returns, users, carts, checkouts, and conversation history.
+- Agent trace showing intent, memory, decision, and response.
+- Optional OpenAI Responses API adapter. Without `OPENAI_API_KEY`, the demo uses deterministic replies for reproducible runs.
+- Spanish, Portuguese, and English interface and conversation support, including explicit language switching.
 
-## Entregables
+## Deliverables
 
-- Deck para Decagon: [`output/Bookly-Decagon-solution-deck.pptx`](output/Bookly-Decagon-solution-deck.pptx)
-- Escenarios trilingües basados en datos de Supabase: [`output/pdf/Bookly-test-scenarios-trilingual.pdf`](output/pdf/Bookly-test-scenarios-trilingual.pdf)
-- Diagrama: [`docs/bookly-agent-flow.svg`](docs/bookly-agent-flow.svg) y [`docs/bookly-agent-flow.md`](docs/bookly-agent-flow.md)
-- Validación del take-home: [`docs/DELIVERY-CHECKLIST.md`](docs/DELIVERY-CHECKLIST.md)
-- Índice documental: [`docs/README.md`](docs/README.md)
+- Solution deck: [`output/Bookly-solution-deck.pptx`](output/Bookly-solution-deck.pptx)
+- Trilingual test scenarios based on Supabase data: [`output/pdf/Bookly-test-scenarios-trilingual.pdf`](output/pdf/Bookly-test-scenarios-trilingual.pdf)
+- Architecture diagram: [`docs/bookly-agent-flow.svg`](docs/bookly-agent-flow.svg) and [`docs/bookly-agent-flow.md`](docs/bookly-agent-flow.md)
+- Requirements validation: [`docs/DELIVERY-CHECKLIST.md`](docs/DELIVERY-CHECKLIST.md)
+- Documentation index: [`docs/README.md`](docs/README.md)
 
-## Ejecutar
+## Run locally
 
-Requiere Node.js 20+ porque el proyecto usa `node --env-file` y `fetch` nativo.
+Requires Node.js 20 or newer because the project uses `node --env-file` and native `fetch`.
 
 ```bash
 npm install
 npm start
 ```
 
-Abre `http://localhost:3000`.
+Open:
 
-### Variables de entorno
+- `http://localhost:3000/` for the support-agent experience.
+- `http://localhost:3000/landing` for the bookstore landing page and chat widget.
 
-Copia `.env.example` a `.env` y reemplaza los valores:
+## Environment variables
+
+Copy `.env.example` to `.env` and replace the placeholder values:
 
 ```bash
 cp .env.example .env
 ```
 
-Variables disponibles:
+Available variables:
 
-- `OPENAI_API_KEY`: opcional; habilita el adaptador LLM.
-- `OPENAI_MODEL`: opcional; por defecto `gpt-4.1-mini`.
-- `SUPABASE_URL`: opcional; URL del proyecto Supabase.
-- `SUPABASE_SERVICE_ROLE_KEY`: opcional y solo para servidor. Nunca exponerla en el navegador.
+- `OPENAI_API_KEY`: optional; enables the cognitive adapter.
+- `OPENAI_MODEL`: optional; defaults to `gpt-4.1-mini`.
+- `SUPABASE_URL`: optional; Supabase project URL.
+- `SUPABASE_SERVICE_ROLE_KEY`: optional and server-only. Never expose it in browser code.
 
-El endpoint `/api/health` indica si OpenAI y Supabase están configurados. Sin credenciales, el demo usa respuestas deterministas y datos mock.
+The `/api/health` endpoint reports whether OpenAI and Supabase are configured. Without credentials, the app falls back to deterministic replies and mock data.
 
-El modelo redacta con contexto verificado por las herramientas; las consultas de Supabase, estados de pedidos, devoluciones y checkout no se delegan ciegamente al modelo.
+The model receives verified context from the orchestration layer. Supabase lookups, order status, return mutations, and checkout persistence are not delegated blindly to the model.
 
-Para conectar las tablas de Supabase desde el servidor:
+## Supabase setup
+
+Set the server variables before starting the app:
 
 ```bash
-SUPABASE_URL=https://TU_PROJECT_REF.supabase.co \\
-SUPABASE_SERVICE_ROLE_KEY=tu_service_role_key \\
+SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co \
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key \
 npm start
 ```
 
-`SUPABASE_SERVICE_ROLE_KEY` solo debe vivir en el servidor. El bot consulta `bookly_books` para búsquedas, consulta y actualiza `bookly_orders` para estado y devoluciones, guarda usuarios/checkouts y registra cada turno en `bookly_conversation_history`. Si las variables no existen, el demo usa los datos mock incluidos.
+Apply the migrations in this order from the Supabase SQL Editor or with the Supabase CLI:
 
-Las migraciones reproducibles están en `supabase/migrations/`. Aplica primero `20260918_create_bookly_support_tables.sql` y después `20260918_create_bookly_commerce_tables.sql` desde el SQL Editor de Supabase o con Supabase CLI (`supabase db push`).
+1. `supabase/migrations/20260918_create_bookly_support_tables.sql`
+2. `supabase/migrations/20260918_create_bookly_commerce_tables.sql`
 
-Para cargar el catálogo de 20 libros de prueba, configura las variables y ejecuta:
+To load the 20-book demonstration catalog:
 
 ```bash
 node scripts/import-amazon-books.mjs
 ```
 
-El script importa los títulos, autores, géneros, precios, stock, portadas y ASIN/ISBN. Los pedidos de ejemplo están en `supabase/seed/20260918_bookly_orders_examples.sql`. No se versionan credenciales ni datos personales.
+The import script loads titles, authors, genres, prices, stock, covers, and ISBN/ASIN values. Example orders are defined in `supabase/seed/20260918_bookly_orders_examples.sql`.
 
-El checkout conversacional solicita nombre, email, dirección y método de pago. El carrito se conserva en el navegador y, al completar los datos, el checkout se guarda con estado `payment_pending`; no se procesa ningún cobro real hasta integrar un proveedor de pagos.
+The conversational checkout asks for a name, email, shipping address, and payment method. It stores the checkout as `payment_pending`; it does not process a real payment.
 
-La lógica de negocio y las herramientas siguen siendo las fuentes de verdad. El LLM solo redacta la respuesta final con el contexto que recibe.
+## Suggested demo
 
-## Demo sugerida
+1. Type `Where is my order?` or `¿Dónde está mi pedido?`.
+2. With Supabase enabled, reply `BK-1003`; with mock fallback, reply `BK-1042`.
+3. Type `Search books` or `Busca libros` and choose a category.
+4. Start a new conversation and type `I want to return a book`.
+5. With Supabase enabled, reply `BK-1005`; with mock fallback, reply `BK-2098`; then reply `It is damaged`.
+6. Press `Buy`, complete the checkout fields, and verify the `payment_pending` status.
+7. Switch languages with a flag or type `can we talk in english`.
 
-1. Escribe `¿Dónde está mi pedido?`.
-2. Si ejecutas con Supabase, responde `BK-1003`; con fallback mock, responde `BK-1042`.
-3. Prueba `Busca libros` y elige una categoría.
-4. Reinicia la conversación y escribe `Quiero devolver un libro`.
-5. Con Supabase, responde `BK-1005`; con fallback mock, responde `BK-2098`; luego responde `Está dañado`.
-6. Pulsa `Comprar`, completa los datos y verifica que el checkout quede `payment_pending`.
-7. Cambia el idioma con una bandera o escribiendo explícitamente `can we talk in english`.
+For the complete test suite, see [`docs/DELIVERY-CHECKLIST.md`](docs/DELIVERY-CHECKLIST.md) and the trilingual PDF.
 
-Para ejecutar los escenarios completos, consulta [`docs/DELIVERY-CHECKLIST.md`](docs/DELIVERY-CHECKLIST.md) y el PDF trilingüe.
+## Design decisions
 
-## Decisiones
+- Small explicit orchestrator: intent classification, session memory, tool call, and final response drafting.
+- Mock data fallback keeps the demo runnable without credentials.
+- Deterministic operational replies reduce unsupported order and payment claims.
+- The production roadmap includes authentication, a real payment provider, mutation idempotency, observability, and human handoff.
 
-- Orquestación explícita y pequeña: clasificación de intención, memoria de sesión, tool call y redacción final.
-- Datos mock como fallback para mantener el demo ejecutable sin credenciales.
-- Respuestas deterministas por defecto para evitar inventar hechos de pedido.
-- En producción añadiría autenticación, proveedor de pagos real, idempotencia de mutaciones, observabilidad y handoff humano.
+## Security and prototype limits
 
-## Seguridad y límites del prototipo
+- Never commit `.env`, API keys, service-role keys, tokens, or customer data.
+- The checkout records `payment_pending`; it does not charge money.
+- OpenAI is optional and receives conversation context plus verified tool results.
+- Imported book covers use external URLs and may fall back if a source changes.
+- Authentication, real payments, and production controls are documented as next steps.
 
-- No subas `.env`, API keys, service-role keys ni tokens.
-- El checkout solo registra `payment_pending`; no cobra dinero.
-- El adaptador OpenAI es opcional y recibe únicamente contexto de la conversación y herramientas.
-- Las portadas del catálogo importado provienen de URLs externas; si una fuente cambia, la interfaz usa fallback visual.
-- El flujo está preparado para demo y evaluación; autenticación, pagos reales y controles de producción quedan documentados como siguientes pasos.
+## License and references
 
-## Licencia y referencias
-
-Este repositorio es un prototipo de evaluación. El catálogo de demostración se importa desde la página pública de bestsellers de Amazon mediante `scripts/import-amazon-books.mjs`; las marcas y portadas pertenecen a sus respectivos propietarios. La arquitectura, migraciones y documentación son parte del prototipo Bookly.
+This repository is an evaluation prototype. The demonstration catalog is imported from the public Amazon bestsellers page by `scripts/import-amazon-books.mjs`; trademarks and cover images belong to their respective owners. The Bookly architecture, migrations, application code, and documentation are part of this prototype.
