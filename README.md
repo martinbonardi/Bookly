@@ -35,6 +35,10 @@ Open:
 - `http://localhost:3000/` for the support-agent experience.
 - `http://localhost:3000/landing` for the bookstore landing page and chat widget.
 
+## GitHub Pages
+
+The repository includes `.github/workflows/pages.yml` to publish the static `public/` shell on GitHub Pages after the Pages source is set to **GitHub Actions** in the repository settings. GitHub Pages cannot run `server.mjs`, so the published shell does not provide the `/api/chat`, `/api/promotions`, or `/api/image` backend endpoints by itself. Use a Node-capable host for the backend and configure a public API base URL before treating the Pages site as a fully working deployment.
+
 ## Environment variables
 
 Copy `.env.example` to `.env` and replace the placeholder values:
