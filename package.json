@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node server.mjs",
-    "dev": "node --env-file=.env --watch server.mjs"
+    "start": "node scripts/start.mjs",
+    "dev": "node --watch scripts/start.mjs"
   }
 }

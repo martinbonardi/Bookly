@@ -246,8 +246,9 @@ const server = http.createServer(async (req, res) => {
   if (req.url === '/app.js') return serveFile(res, path.join(publicDir, 'app.js'), 'text/javascript; charset=utf-8');
   res.writeHead(404); res.end('Not found');
 });
+export function startServer() { server.listen(port, () => console.log(`Bookly agent running at http://localhost:${port}`)); }
 export { orchestrate, toolGetOrderStatus, toolCreateReturn };
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  server.listen(port, () => console.log(`Bookly agent running at http://localhost:${port}`));
+  startServer();
 }
