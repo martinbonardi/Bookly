@@ -25,7 +25,7 @@ El PDF `SE Take-Home (1).pdf` solicita un prototipo interactivo con:
 | Memoria/histórico | Historial de conversación y persistencia Supabase | Entregado |
 | Motor cognitivo | Adaptador opcional de OpenAI con fallback determinista | Entregado |
 | 3–5 slide solution deck | `output/Bookly-solution-deck.pptx` | Delivered |
-| Casos de prueba | `output/pdf/Bookly-test-scenarios-trilingual.pdf` | Entregado |
+| Casos de prueba | `info/Bookly-test-scenarios-trilingual.pdf` | Entregado |
 | Diagrama de funcionamiento | `docs/bookly-agent-flow.svg` y `.md` | Entregado |
 | Run instructions | `README.md` | Entregado |
 
@@ -48,7 +48,7 @@ Desde la raíz del proyecto:
 
 ```bash
 git status
-git add docs output/Bookly-solution-deck.pptx output/pdf/Bookly-test-scenarios-trilingual.pdf
+git add docs info/Bookly-test-scenarios-trilingual.pdf output/Bookly-solution-deck.pptx
 git commit -m "docs: add solution deck, tests and architecture flow"
 git push origin <branch>
 ```

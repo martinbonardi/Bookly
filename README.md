@@ -16,7 +16,7 @@ Bookly is a conversational support and shopping prototype for an online bookstor
 ## Deliverables
 
 - Solution deck: [`output/Bookly-solution-deck.pptx`](output/Bookly-solution-deck.pptx)
-- Trilingual test scenarios based on Supabase data: [`output/pdf/Bookly-test-scenarios-trilingual.pdf`](output/pdf/Bookly-test-scenarios-trilingual.pdf)
+- Trilingual test scenarios based on Supabase data: [`info/Bookly-test-scenarios-trilingual.pdf`](info/Bookly-test-scenarios-trilingual.pdf)
 - Architecture diagram: [`docs/bookly-agent-flow.svg`](docs/bookly-agent-flow.svg) and [`docs/bookly-agent-flow.md`](docs/bookly-agent-flow.md)
 - Requirements validation: [`docs/DELIVERY-CHECKLIST.md`](docs/DELIVERY-CHECKLIST.md)
 - Documentation index: [`docs/README.md`](docs/README.md)
@@ -107,7 +107,7 @@ For the complete test suite, see [`docs/DELIVERY-CHECKLIST.md`](docs/DELIVERY-CH
 
 ## Test scenarios
 
-The test document is available at [`output/pdf/Bookly-test-scenarios-trilingual.pdf`](output/pdf/Bookly-test-scenarios-trilingual.pdf).
+The test document is available at [`info/Bookly-test-scenarios-trilingual.pdf`](info/Bookly-test-scenarios-trilingual.pdf).
 
 It contains repeatable scenarios in Spanish, Portuguese, and English covering:
 

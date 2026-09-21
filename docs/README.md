@@ -5,7 +5,7 @@ This folder contains the supporting materials for the Bookly project and the tak
 ## Entregables
 
 - [Solution deck](../output/Bookly-solution-deck.pptx)
-- [Trilingual test scenarios — PDF](../output/pdf/Bookly-test-scenarios-trilingual.pdf)
+- [Trilingual test scenarios — PDF](../info/Bookly-test-scenarios-trilingual.pdf)
 - [Flow diagram — SVG](./bookly-agent-flow.svg)
 - [Flow diagram — Mermaid](./bookly-agent-flow.md)
 - [Requirements checklist](./DELIVERY-CHECKLIST.md)
