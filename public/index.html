@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bookly</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/promotions.css" />
+    <link rel="stylesheet" href="/commerce.css" />
+    <link rel="stylesheet" href="/app-language.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar"><a class="brand" href="#"><span class="brand-mark">B</span><span>bookly</span></a></header>
+      <section class="intro"><div><p class="eyebrow">LIBRERÍA ONLINE · CUSTOMER SUPPORT</p><h1>Una conversación que<br /><em>llega al siguiente capítulo.</em></h1></div><div class="book-stack" aria-hidden="true"><span class="book book-one"></span><span class="book book-two"></span><span class="book book-three"></span></div></section>
+      <section class="workspace"><div class="chat-panel"><div class="panel-head"><div><p class="panel-kicker">CONVERSACIÓN</p><h2>Bookly Assistant</h2></div><button class="reset" id="reset">Nueva conversación</button></div><section class="promotions" aria-labelledby="promotions-title"><div class="promotions-head"><div><p class="panel-kicker">SELECCIÓN BOOKLY</p><h3 id="promotions-title">Promociones y novedades</h3></div><div class="carousel-controls"><button id="promo-prev" aria-label="Libro anterior">←</button><button id="promo-next" aria-label="Libro siguiente">→</button></div></div><div id="promotions-list" class="promotions-list" aria-live="polite"><p class="promo-loading">Cargando libros...</p></div></section><div id="messages" class="messages"></div><div class="composer"><div class="quick-prompts"><button data-prompt="¿Dónde está mi pedido?">Estado del pedido</button><button data-prompt="Quiero devolver un libro">Devolución</button><button data-prompt="Busca libros">Buscar libros</button><button data-prompt="¿Cuánto tarda el envío?">Envíos</button></div><form id="chat-form"><input id="chat-input" autocomplete="off" placeholder="Escribe tu pregunta..." /><button aria-label="Enviar">↗</button></form><p class="hint">Prueba: “Buscar libros” para elegir una categoría, o pregunta por tu pedido.</p></div></div><aside class="trace-panel"><div class="panel-head compact"><div><p class="panel-kicker">AGENT TRACE</p><h2>Cómo decide</h2></div><span class="live-pill"><span class="status-dot"></span> live</span></div><div id="trace" class="trace"></div><div class="demo-data"><p class="panel-kicker">DATOS DE DEMO</p><p><b>BK-1042</b> · The Midnight Library</p><p><b>BK-2098</b> · Designing Data-Intensive Applications</p></div></aside></section>
+      <footer><span>Bookly / SE take-home prototype</span></footer>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

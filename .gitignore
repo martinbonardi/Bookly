@@ -1,0 +1,8 @@
+.env
+.env.*
+!.env.example
+node_modules/
+.DS_Store
+.codex-build/
+# Superseded local draft; publish the Decagon deck instead.
+output/Bookly-agent-pitch-deck-v2.pptx

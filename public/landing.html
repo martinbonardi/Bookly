@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bookly · Libros para tu próximo capítulo</title>
+    <link rel="stylesheet" href="/landing.css" />
+    <link rel="stylesheet" href="/landing-extra.css" />
+    <link rel="stylesheet" href="/landing-thumb.css" />
+  </head>
+  <body>
+    <main class="landing">
+      <nav class="landing-nav"><a class="landing-brand" href="/landing"><span>B</span> bookly</a><a class="nav-link" href="/">Abrir asistente</a></nav>
+      <section class="hero"><div class="hero-copy"><p class="eyebrow">LIBRERÍA ONLINE</p><h1>Encuentra el libro que abre tu <em>próximo capítulo.</em></h1><p>Historias para perderte, ideas para encontrarte y lecturas elegidas para acompañarte.</p><button class="hero-cta" id="hero-chat">Hablar con Bookly <span>↗</span></button></div><div class="hero-note"><span>01</span><p>Recomendaciones<br />que se sienten tuyas.</p></div></section>
+      <section class="landing-strip"><div><small>SELECCIÓN CURADA</small><strong>Libros que vale la pena llevarse.</strong></div><div><small>AYUDA PERSONAL</small><strong>Compra, pedidos y devoluciones en un solo lugar.</strong></div><div><small>ENTREGA</small><strong>Tu próxima lectura, camino a casa.</strong></div></section>
+    </main>
+    <button class="chat-launcher" id="chat-launcher" aria-label="Abrir chat con Bookly"><span>✦</span><b>¿Te ayudo a elegir?</b></button>
+    <section class="chat-widget" id="chat-widget" aria-label="Chat de Bookly" hidden><header><div><small>BOOKLY</small><strong>Asistente de lectura</strong></div><div class="widget-header-actions"><div class="language-picker" aria-label="Idioma del asistente"><button class="language-button active" data-language="es" title="Español">🇪🇸</button><button class="language-button" data-language="pt" title="Português">🇵🇹</button><button class="language-button" data-language="en" title="English">🇬🇧</button></div><button id="chat-close" aria-label="Cerrar chat">×</button></div></header><div class="widget-carousel-wrap"><button class="carousel-scroll carousel-scroll-prev" id="widget-carousel-prev" aria-label="Libros anteriores">‹</button><div class="widget-carousel" id="widget-carousel" aria-label="Libros destacados"></div><button class="carousel-scroll carousel-scroll-next" id="widget-carousel-next" aria-label="Más libros">›</button></div><div class="widget-messages" id="widget-messages"></div><div class="widget-prompts"><button data-prompt="Busca libros">Buscar libros</button><button data-prompt="Quiero comprar un libro">Comprar</button><button data-prompt="¿Dónde está mi pedido?">Mi pedido</button></div><form class="widget-form" id="widget-form"><input id="widget-input" placeholder="Escribe tu pregunta..." autocomplete="off" /><button aria-label="Enviar">↗</button></form></section>
+    <script type="module" src="/landing.js"></script>
+  </body>
+</html>
