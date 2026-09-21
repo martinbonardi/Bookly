@@ -35,9 +35,19 @@ Open:
 - `http://localhost:3000/` for the support-agent experience.
 - `http://localhost:3000/landing` for the bookstore landing page and chat widget.
 
-## GitHub Pages
+## One-service deployment
 
-The repository includes `.github/workflows/pages.yml` to publish the static `public/` shell on GitHub Pages after the Pages source is set to **GitHub Actions** in the repository settings. GitHub Pages cannot run `server.mjs`, so the published shell does not provide the `/api/chat`, `/api/promotions`, or `/api/image` backend endpoints by itself. Use a Node-capable host for the backend and configure a public API base URL before treating the Pages site as a fully working deployment.
+GitHub Pages only serves static files and cannot run `server.mjs`, so it cannot host the complete Bookly experience. The repository includes [`render.yaml`](render.yaml) for a single Render web service that serves the frontend, chat APIs, Supabase integration, OpenAI adapter, and image proxy from one URL.
+
+### Deploy to Render
+
+1. Open [Render Blueprint](https://render.com/deploy?repo=https://github.com/martinbonardi/Bookly).
+2. Connect the GitHub repository and create the `bookly` web service.
+3. Add `OPENAI_API_KEY`, `SUPABASE_URL`, and `SUPABASE_SERVICE_ROLE_KEY` in Render's environment settings.
+4. Deploy. Render runs `npm install`, starts `npm start`, and checks `/api/health`.
+5. Open the generated Render URL. The full experience is available at `/` and `/landing`.
+
+The service keeps secrets server-side. Do not place OpenAI or Supabase service-role keys in frontend files.
 
 ## Environment variables
 
