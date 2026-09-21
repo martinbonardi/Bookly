@@ -105,6 +105,28 @@ The conversational checkout asks for a name, email, shipping address, and paymen
 
 For the complete test suite, see [`docs/DELIVERY-CHECKLIST.md`](docs/DELIVERY-CHECKLIST.md) and the trilingual PDF.
 
+## Test scenarios
+
+The test document is available at [`output/pdf/Bookly-test-scenarios-trilingual.pdf`](output/pdf/Bookly-test-scenarios-trilingual.pdf).
+
+It contains repeatable scenarios in Spanish, Portuguese, and English covering:
+
+- Order status lookup with a missing order number.
+- Multi-turn return creation with eligibility and return reason validation.
+- Category-based book search using the Supabase catalog.
+- Conversational purchase, registration, checkout, and closing intent.
+- Explicit language switching during an active conversation.
+
+The scenarios use a non-personal Supabase data snapshot from September 20, 2026:
+
+- 20 catalog books with title, author, genre, price, stock, and ISBN/ASIN.
+- 10 example orders with status, carrier, tracking, delivery date, and return eligibility.
+- 1 checkout record with `payment_pending` status, `tarjeta` payment method, and a USD 13.53 total.
+
+Reference records include `BK-1003`, `BK-1004`, `BK-1005`, `Verity`, `The Midnight Library`, `The Little Prince`, and `CHK-MU77SWL6`. Personal fields such as names, emails, phone numbers, and addresses were excluded from the test document.
+
+A scenario passes when the response matches the expected behavior, the agent trace shows the intended decision, the relevant tool is called, and the assistant does not invent order, price, payment, stock, or return facts.
+
 ## Design decisions
 
 - Small explicit orchestrator: intent classification, session memory, tool call, and final response drafting.
